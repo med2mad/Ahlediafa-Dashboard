@@ -1,0 +1,23 @@
+<div class="header pb-8 pt-5 pt-md-8" [class]="templatecolor" >
+</div>
+<!-- Page content -->
+<div class="container-fluid">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="p-4">
+          <input type="month" class="form-control" style="max-width:170px;" id="datePicker" (change)="onDateChange($event)" min="2023-01" max="2100-12">
+          <full-calendar [options]="calendarOptions" #ref></full-calendar>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .container-fluid{
+    margin-top: -10rem;
+  }
+</style>

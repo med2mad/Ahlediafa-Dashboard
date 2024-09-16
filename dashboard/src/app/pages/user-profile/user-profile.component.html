@@ -1,0 +1,96 @@
+<!-- <span _ngcontent-c6="" class="mask bg-gradient-danger opacity-8"></span> -->
+<span _ngcontent-c6="" class="mask opacity-4" [class]="templatecolor"></span>
+<div _ngcontent-c6="" class="container-fluid d-flex align-items-center"></div>
+
+<div class="header pb-8 pt-5 pt-md-8" [class]="templatecolor">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div id="profitsum" style="color:white;"></div>
+      <!-- Card stats -->
+      <div class="row">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--7">
+  <div class="row">
+
+    <div _ngcontent-c6="" class="col-xl-4 order-xl-2 mb-5 mb-xl-0"><div _ngcontent-c6="" class="card card-profile shadow"><div _ngcontent-c6="" class="row justify-content-center"><div _ngcontent-c6="" class="col-lg-3 order-lg-2">
+      <div _ngcontent-c6="" class="card-profile-image"><a _ngcontent-c6="" href="javascript:void(0)">
+        <img _ngcontent-c6="" class="rounded-circle" [src]="'http://localhost:5000/staticRoute/'+(photo?photo:'profile.jpg')">
+      </a></div></div></div><div _ngcontent-c6="" class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4"></div><div _ngcontent-c6="" class="card-body pt-0 pt-md-4"><div _ngcontent-c6="" class="row"><div _ngcontent-c6="" class="col"><div _ngcontent-c6="" class="card-profile-stats d-flex justify-content-center mt-md-5"></div></div></div>
+    <div _ngcontent-c6="" class="text-center">
+      <div class="mb-3"><br>
+        <input #photoinput name="photo" class="form-control" type="file" data-browse="Avatar" style="color:black !important;">
+        <br><button class="btn btn-dark" (click)="removePhoto(photoinput)">Retirer la Photo</button>
+      </div>
+      <input type="radio" value="bg-gradient-info" name="templatecolor" id="blue" (change)="changecolor()"> <label style="color:blue" for="blue">Bleu</label> | 
+      <input type="radio" value="bg-gradient-danger" checked name="templatecolor" id="orange" (change)="changecolor()"> <label style="color:red" for="orange">Rouge</label> | 
+      <input type="radio" value="bg-gradient-success" name="templatecolor" id="green" (change)="changecolor()"> <label style="color:green" for="green">Vert</label>
+      </div></div>
+    </div>
+  </div>
+    
+    <div class="col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Info Utilisateur</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form id="frmid">
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label">Nom Utilisateur</label>
+                    <input [(ngModel)]="username" name="username" type="text" class="form-control form-control-alternative" style="color:black !important;">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label">Email</label>
+                    <input [(ngModel)]="email" name="email" type="email" class="form-control form-control-alternative" style="color:black !important;">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label">Prénom</label>
+                    <input [(ngModel)]="firstname" name="firstname" type="text" class="form-control form-control-alternative"
+                    style="color:black !important;">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label">Nom de Famille</label>
+                    <input [(ngModel)]="lastname" name="lastname" type="text" class="form-control form-control-alternative"
+                    style="color:black !important;">
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div style="background-color: pink;">
+              <div id="exists" class="hide" style="color:rgb(221, 88, 110);">Nom Utilisateur Utilisé !</div>
+              <div id="length" class="hide" style="color:rgb(221, 88, 110);">Nom Utilisateur doit avoir 5 a 10 caractères !</div>
+            </div>
+
+            <button id="btnid" class="btn btn-primary w-100 py-2" (click)="update(photoinput)">Mettre à jour</button>
+            
+            <hr class="my-4" />
+
+          </form>
+
+          <a routerLink="/changepass">Changer Mot de Pass</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'Gulzar-Regular';
+    src: url('Gulzar-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+nav #logo{
+    font-family: 'Gulzar-Regular', sans-serif;
+}
+
+nav #logo img{
+    border-radius:50%;
+    margin-right:2px;
+}
+
+.me-3{
+    margin-right: 4px !important;
+}
+
+.nav-item{
+    flex-direction: row-reverse;
+    flex: 0 1 auto; /* Do not grow, shrink if necessary, width based on content */
+    width: auto;    /* Width based on content */
+}
+
+#navbarCollapse{
+    justify-content: flex-end;
+    gap:30px;
+}
+
+.dropdown-item .align-items-center{
+    flex-direction: row-reverse;
+    gap:5px;
+}

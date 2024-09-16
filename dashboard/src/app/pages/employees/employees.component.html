@@ -1,0 +1,139 @@
+<div class="header pb-8 pt-5 pt-md-8" [class]="templatecolor">
+
+</div>
+
+<!-- Page content -->
+<div class="container-fluid mt--9">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0 d-flex" style="justify-content:space-between;">
+          <!-- Add -->
+          <div>
+            <button type="button" class="btn btn-success" (click)="post()">+ Ajouter</button>
+          </div>
+          <!-- Search -->
+          <form class="navbar-search navbar-search-dark form-inline pl-3 d-none d-md-flex mr-lg-auto">
+            <div class="form-group mb-0" [ngClass]="{ 'focused': focus === true }">
+              <div class="input-group input-group-alternative" style="border:#bbbbbb solid 1px !important;">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-search" style="color:#bbbbbb !important;"></i></span>
+                </div>
+                <input class="form-control" placeholder="Nom" type="text" (focus)="focus = true" (blur)="focus = false" 
+                [(ngModel)]="name" (keyup)="get()" style="color:black !important;">
+              </div>
+            </div>
+          </form>
+
+          <nav aria-label="...">
+            <ul class="pagination justify-content-end mb-0">
+              <li [class]="{'page-item':true, 'disabled':currentPage==1}" style="cursor:pointer;">
+                <a class="page-link" (click)="get(currentPage-1)" tabindex="-1">
+                  <i class="fas fa-angle-left"></i>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li *ngFor="let item of pages; let i=index" [class]="{'page-item':true, 'active':currentPage==i+1}">
+                <span class="page-link" (click)="get(i+1)" style="cursor:pointer; z-index: 0;">{{i+1}}<span class="sr-only">(current)</span></span>
+              </li>
+              <li [class]="{'page-item':true, 'disabled':currentPage==totalPages}" style="cursor:pointer;">
+                <a class="page-link" (click)="get(currentPage+1)">
+                  <i class="fas fa-angle-right"></i>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+        </div>
+
+        
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">N° Télephone</th>
+                <th scope="col">Role</th>
+                <th scope="col">Tâche</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let employee of employees; let i = index;">
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
+                      <img [id]="'img'+i" alt="employé" [src]="'http://localhost:5000/staticRoute/'+employee.photo">
+                    </a>
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">{{employee.name}}</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                  <span class="badge badge-dot mr-4">
+                    <div>{{employee.phone}}</div>
+                  </span>
+                </td>
+                <td>
+                  {{employee.role}}
+                </td>
+                <td>
+                  {{employee.event?employee.event.title:''}}
+                </td>
+                <td class="text-right">
+                  <div>
+                    <div>
+                      <div style="margin-bottom:5px;"><button type="button" (click)="put(employee.id, employee.name, employee.phone, employee.role, employee.photo, i)" class="btn btn-primary btn-sm">Modifier</button></div>
+                      <button type="button" (click)="delete(employee.id, i)" class="btn btn-danger btn-sm">Supprimer</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4 d-flex" style="justify-content:space-between;">
+
+          <div>
+            <button type="button" class="btn btn-success" (click)="post()">+ Ajouter</button>
+          </div>
+
+          <nav aria-label="...">
+            <ul class="pagination justify-content-end mb-0">
+              <li [class]="{'page-item':true, 'disabled':currentPage==1}" style="cursor:pointer;">
+                <a class="page-link" (click)="get(currentPage-1)" tabindex="-1">
+                  <i class="fas fa-angle-left"></i>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li *ngFor="let item of pages; let i=index" [class]="{'page-item':true, 'active':currentPage==i+1}">
+                <span class="page-link" (click)="get(i+1)" style="cursor:pointer;">{{i+1}}<span class="sr-only">(current)</span></span>
+              </li>
+              <li [class]="{'page-item':true, 'disabled':currentPage==totalPages}" style="cursor:pointer;">
+                <a class="page-link" (click)="get(currentPage+1)">
+                  <i class="fas fa-angle-right"></i>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+::placeholder {
+  color: #bbbbbb !important;
+  opacity: 1 !important; /* Firefox */
+}
+
+::-ms-input-placeholder { /* Edge 12 -18 */
+  color: #bbbbbb !important;
+}
+</style>

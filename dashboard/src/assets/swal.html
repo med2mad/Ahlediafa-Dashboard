@@ -1,0 +1,32 @@
+<div id="checkEvent">
+    <pre id="description"></pre><br>
+    <button id="edit" type="button" class="btn btn-primary">Modifier</button>
+    <button id="employees" type="button" class="btn btn-success">Employés</button>
+    <button id="delete" type="button" class="btn btn-danger">Supprimer</button>
+</div>
+
+<div id="add">
+    <input type="text" id="title" class="swal2-input" placeholder="Titre"><br/><br/>
+    <textarea id="description" rows="4" cols="40"></textarea><br/>
+    <input type="number" id="profit" class="swal2-input" placeholder="Profit">DH<br/><br/>
+    <input type="radio" value="green" name="domain" id="green"> <label style="color:green" for="green">Restauration</label> | 
+    <input type="radio" value="blue" checked name="domain" id="blue"> <label style="color:blue" for="blue">Nettoyage</label> | 
+    <input type="radio" value="orange" name="domain" id="orange"> <label style="color:orange" for="orange">livraison</label> | 
+    <input type="radio" value="gray" name="domain" id="gray"> <label style="color:gray" for="gray">Autres</label><br/><br/>
+    <label class="form-label">Completion: </label> <label id="completionlabel" class="form-label">0%</label> <input id="completion" type="range" class="form-range" step="10" min="0" max="100"><br/><br/>
+    <input id="start" type="date" />
+</div>
+
+<table id="table" class="table align-items-center table-flush">
+    <thead class="thead-light">
+        <tr style="display:none">
+            <th scope="col">Employé</th>
+            <th scope="col"></th>
+            <th scope="col">id</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+
+    </tbody>
+</table>
