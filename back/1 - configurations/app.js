@@ -27,7 +27,8 @@ module.exports = app;
 
 async function photoParser(req, res, next){//parses the name of the photo in a variable called "req.PHOTO_PARSED"
     if(req.file){req.PHOTO_PARSED = req.file.filename;}
-    else{req.PHOTO_PARSED = req.body.selectedPhotoName;}
+    else if(req.body.selectedPhotoName){req.PHOTO_PARSED = req.body.selectedPhotoName;} //happens in case of modifying employees
+    else { req.PHOTO_PARSED = "profile.jpg" } //happens in case of adding employee with no photo
     next();
 }
 

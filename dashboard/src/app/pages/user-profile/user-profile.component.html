@@ -19,12 +19,13 @@
 
     <div _ngcontent-c6="" class="col-xl-4 order-xl-2 mb-5 mb-xl-0"><div _ngcontent-c6="" class="card card-profile shadow"><div _ngcontent-c6="" class="row justify-content-center"><div _ngcontent-c6="" class="col-lg-3 order-lg-2">
       <div _ngcontent-c6="" class="card-profile-image"><a _ngcontent-c6="" href="javascript:void(0)">
-        <img _ngcontent-c6="" class="rounded-circle" [src]="'http://localhost:5000/staticRoute/'+(photo?photo:'profile.jpg')">
+        <img #photoimg _ngcontent-c6="" class="rounded-circle" [src]="'http://localhost:5000/staticRoute/'+(photo?photo:'profile.jpg')">
       </a></div></div></div><div _ngcontent-c6="" class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4"></div><div _ngcontent-c6="" class="card-body pt-0 pt-md-4"><div _ngcontent-c6="" class="row"><div _ngcontent-c6="" class="col"><div _ngcontent-c6="" class="card-profile-stats d-flex justify-content-center mt-md-5"></div></div></div>
     <div _ngcontent-c6="" class="text-center">
       <div class="mb-3"><br>
-        <input #photoinput name="photo" class="form-control" type="file" data-browse="Avatar" style="color:black !important;">
-        <br><button class="btn btn-dark" (click)="removePhoto(photoinput)">Retirer la Photo</button>
+        <input #photoinput id="photo" (change)="changephoto(photoinput, photoimg)" name="photo" type="file" data-browse="Avatar" style="display:none;">
+        <br><button class="btn btn-dark mb-1" (click)="nouvelphoto()">Nouvel Photo</button>
+        <br><button class="btn btn-dark" (click)="removePhoto(photoinput, photoimg)">Retirer la Photo</button>
       </div>
       <input type="radio" value="bg-gradient-info" name="templatecolor" id="blue" (change)="changecolor()"> <label style="color:blue" for="blue">Bleu</label> | 
       <input type="radio" value="bg-gradient-danger" checked name="templatecolor" id="orange" (change)="changecolor()"> <label style="color:red" for="orange">Rouge</label> | 

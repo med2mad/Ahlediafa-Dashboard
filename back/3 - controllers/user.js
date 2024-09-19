@@ -37,10 +37,10 @@ signup = async (req, res)=>{
         return res.send("exists");
     else{
         const hash = await bcrypt.hash(req.body.password1, 10);
-        User.create({"username":req.body.username, "password":req.body.password1, "email":req.body.email, "hash":hash, "photo":(req.PHOTO_PARSED?req.PHOTO_PARSED:'profile.jpg')})
+        User.create({"username":req.body.username, "password":req.body.password1, "email":req.body.email, "hash":hash, "photo":req.PHOTO_PARSED})
         .then((user)=>{
             const token = jwt.sign({"id":user.id}, process.env.jwt_secret);
-            res.send({"username":req.body.username, "photo":(req.PHOTO_PARSED)?req.PHOTO_PARSED:'profile.jpg', "token":token});
+            res.send({"username":req.body.username, "photo":req.PHOTO_PARSED, "token":token});
         });
     }
 };
@@ -54,11 +54,10 @@ update = (req, res)=>{
             return res.send("exists");
         }
         else{
-            const photo=(req.PHOTO_PARSED?req.PHOTO_PARSED:'profile.jpg');
             const newUserName = (req.body.username?req.body.username:req.body.oldusername)
-            User.update( {"username":newUserName, "firstname":req.body.firstname, "lastname":req.body.lastname, "email":req.body.email, "photo":photo, "templatecolor":req.body.templatecolor}, {where:{"username":req.body.oldusername}} )
+            User.update( {"username":newUserName, "firstname":req.body.firstname, "lastname":req.body.lastname, "email":req.body.email, "photo":req.PHOTO_PARSED, "templatecolor":req.body.templatecolor}, {where:{"username":req.body.oldusername}} )
             .then(()=>{
-                res.send({"username":newUserName, "photo":photo, "templatecolor":req.body.templatecolor});
+                res.send({"username":newUserName, "photo":req.PHOTO_PARSED, "templatecolor":req.body.templatecolor});
             });
         }
     })

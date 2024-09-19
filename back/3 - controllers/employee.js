@@ -21,21 +21,17 @@ get = (req, res)=>{
 
 module.exports.
 post = (req, res)=>{
-    const photo = (req.PHOTO_PARSED?req.PHOTO_PARSED:'profile.jpg');
-    
-    Employee.create({"name":req.body.name, "phone":req.body.phone, "role":req.body.role, "availability":req.body.availability, "photo":photo})
+    Employee.create({"name":req.body.name, "phone":req.body.phone, "role":req.body.role, "availability":req.body.availability, "photo":req.PHOTO_PARSED})
     .then((entry)=>{
-        res.json({"newId":entry.id, "photo":photo});
+        res.json({"newId":entry.id, "photo":req.PHOTO_PARSED});
     });
 };
 
 module.exports.
 put = (req, res)=>{
-    const photo = (req.PHOTO_PARSED?req.PHOTO_PARSED:'profile.jpg');
-
-    Employee.update({"name":req.body.name, "phone":req.body.phone, "role":req.body.role, "availability":req.body.availability, "photo":photo}, {where:{id: req.params.id}})
+    Employee.update({"name":req.body.name, "phone":req.body.phone, "role":req.body.role, "availability":req.body.availability, "photo":req.PHOTO_PARSED}, {where:{id: req.params.id}})
     .then(()=>{
-        res.json({"editedId":req.params.id, "photo":photo});
+        res.json({"editedId":req.params.id, "photo":req.PHOTO_PARSED});
     });
 };
 

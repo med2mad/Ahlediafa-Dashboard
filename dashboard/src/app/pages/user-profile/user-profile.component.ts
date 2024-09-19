@@ -63,9 +63,17 @@ export class UserProfileComponent implements OnInit  {
     }
   }
 
-  removePhoto(e:HTMLInputElement){
+  nouvelphoto(){
+    document.getElementById('photo').click();
+  }
+  changephoto(photoInput:HTMLInputElement, img:HTMLImageElement){
+    img.setAttribute("src",URL.createObjectURL(photoInput.files[0]));
+  }
+
+  removePhoto(photoInput:HTMLInputElement, img:HTMLImageElement){
     this.photo = 'profile.jpg'
-    e.value = "";
+    photoInput.value = "";
+    img.setAttribute("src", 'http://localhost:5000/staticRoute/profile.jpg');
   }
 
   changecolor(){

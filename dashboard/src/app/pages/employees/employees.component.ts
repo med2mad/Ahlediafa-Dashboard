@@ -24,10 +24,14 @@ export class EmployeesComponent implements OnInit {
             <tr><td style="text-align:right;">Role</td><td style="text-align:left;"><input type="text" id="role" name="role" class="swal2-input"/><br/></td></tr>
             <tr>
               <td style="text-align:right;">
-                <label for="check">Photo </label>
-                <input id="check" type="checkbox" checked>
+                Photo
               </td>
-              <td style="margin:auto"><input #photoinput id="photo" name="photo" class="form-control" type="file" data-browse="Avatar" style="width:75%;margin:10px auto;"></td>
+              <td style="margin:auto">
+                <input #photoinput id="photo" name="photo" type="file" data-browse="Avatar" style="display:none;">
+                <label for="photo"><img id="img" width="100" height="100" src="http://localhost:5000/staticRoute/profile.jpg" alt="photo profile" /></label> <br>
+                <a class="btn btn-secondary" style="width:100px" onclick="document.getElementById('photo').click();"><i class="fa fa-image"></i></a>
+                <a class="btn btn-secondary" style="width:100px" id="nophoto"><i class="fa fa-times"></i></a>
+              </td>
             </tr>
           </table></form>`,
     confirmButtonText: 'Ok',
@@ -60,6 +64,11 @@ export class EmployeesComponent implements OnInit {
         const popup = Swal.getPopup()
         const nameInput = popup.querySelector('#name') as HTMLInputElement
         nameInput.onkeyup = (event) => event.key === 'Enter' && Swal.clickConfirm()
+        const photoInput = popup.querySelector('#photo') as HTMLInputElement
+        const img = popup.querySelector('#img') as HTMLImageElement
+        photoInput.onchange = () => { img.setAttribute("src",URL.createObjectURL(photoInput.files[0])); }
+        const nophoto = popup.querySelector('#nophoto') as HTMLButtonElement
+        nophoto.onclick = () => { img.setAttribute("src","http://localhost:5000/staticRoute/profile.jpg"); photoInput.value=null; }
       },
       preConfirm: () => {
         const popup = Swal.getPopup()
@@ -82,21 +91,20 @@ export class EmployeesComponent implements OnInit {
         phoneInput.onkeyup = (event) => event.key === 'Enter' && Swal.clickConfirm()
         const roleInput = popup.querySelector('#role') as HTMLInputElement
         roleInput.value = role
+        const img = popup.querySelector('#img') as HTMLImageElement
+        img.setAttribute("src","http://localhost:5000/staticRoute/"+photo)
         roleInput.onkeyup = (event) => event.key === 'Enter' && Swal.clickConfirm()
-        const photoCheck = popup.querySelector('#check') as HTMLInputElement
-        photoCheck.checked = (photo==''||photo=='profile.jpg')?false:true
+        const photoInput = popup.querySelector('#photo') as HTMLInputElement
+        photoInput.onchange = () => { img.setAttribute("src",URL.createObjectURL(photoInput.files[0])); }
+        const nophoto = popup.querySelector('#nophoto') as HTMLButtonElement
+        nophoto.onclick = () => { img.setAttribute("src","http://localhost:5000/staticRoute/profile.jpg"); photoInput.value=null; photo="profile.jpg";}
       },
       preConfirm: () => {
         const popup = Swal.getPopup()
         const payload = new FormData(popup.querySelector<HTMLFormElement>('#formid'))
         if(payload.get('name')) {
-          if(!popup.querySelector<HTMLInputElement>('#check').checked){
-            payload.set('photo', null);
-            payload.append('selectedPhotoName', 'profile.jpg');
-          }else
-          {payload.append('selectedPhotoName', photo);}
-          
-          employeesService.put(id, payload, this.employees, i)
+          payload.append('selectedPhotoName', photo);
+          employeesService.put(id, payload, this.employees, i);
         }
       },
     });
