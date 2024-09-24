@@ -35,8 +35,8 @@ export class EmployeesComponent implements OnInit {
             </tr>
           </table></form>`,
     confirmButtonText: 'Ok',
-    showCloseButton: true,
-    focusConfirm: false,
+    showCloseButton: true, 
+    focusConfirm: false, 
     animation:false,
   });
 
