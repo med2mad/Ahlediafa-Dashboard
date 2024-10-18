@@ -57,6 +57,7 @@ export class UserProfileComponent implements OnInit  {
             localStorage.setItem('photo', response.data.photo);
             localStorage.setItem('templatecolor', response.data.templatecolor);
             this.templatecolor = response.data.templatecolor;
+            document.getElementById('exists').style.display = 'none';
             window.location.href = 'http://localhost:4200/#/dashboard';
           }
       })

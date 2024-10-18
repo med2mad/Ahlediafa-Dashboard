@@ -12,7 +12,7 @@
               <span class="mb-0 text-sm  font-weight-bold">{{username}}</span>
             </div>
             <span class="avatar avatar-sm rounded-circle ml-1">
-              <img alt="Image placeholder" [src]="'http://localhost:5000/staticRoute/'+(photo?photo:'profile.jpg')">
+              <img [src]="'http://localhost:5000/staticRoute/'+(photo?photo:'profile.jpg')" style="height:100%;" alt="Image placeholder">
             </span>
           </div>
         </a>

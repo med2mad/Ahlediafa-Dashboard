@@ -13,11 +13,11 @@ export class RegisterComponent implements OnInit {
   templatecolor = 'bg-gradient-info';
 
   ngOnInit() {
-    document.getElementById('required').style.display = 'none'
-    document.getElementById('notmatch').style.display = 'none'
-    document.getElementById('exists').style.display = 'none'
-    document.getElementById('lengthusername').style.display = 'none'
-    document.getElementById('lengthpass').style.display = 'none'
+    document.getElementById('required').style.display = 'none';
+    document.getElementById('notmatch').style.display = 'none';
+    document.getElementById('exists').style.display = 'none';
+    document.getElementById('lengthusername').style.display = 'none';
+    document.getElementById('lengthpass').style.display = 'none';
 
     this.templatecolor = localStorage.getItem('templatecolor');
   }
@@ -41,6 +41,7 @@ export class RegisterComponent implements OnInit {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('username', response.data.username);
           localStorage.setItem('photo', response.data.photo);
+          document.getElementById('exists').style.display = 'none';
           window.location.href = 'http://localhost:4200/#/dashboard';
         }
       })
